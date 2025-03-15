@@ -9,8 +9,11 @@ type Props = {
   favoritos: Produto[]
 }
 
-const Header = ({ favoritos }: Props) => {
+const Header = () => {
   const itens = useSelector((state: RootReducer) => state.carrinho.itens)
+  const favoritos = useSelector(
+    (state: RootReducer) => state.favoritos.favoritos
+  )
 
   const valorTotal = itens.reduce((acc, item) => {
     acc += item.preco
@@ -24,7 +27,7 @@ const Header = ({ favoritos }: Props) => {
         <span>{favoritos.length} favoritos</span>
         <img src={cesta} />
         <span>
-          {itens.length} itens, valor total: {paraReal(valorTotal)}
+          {favoritos.length} itens, valor total: {paraReal(valorTotal)}
         </span>
       </div>
     </S.Header>
